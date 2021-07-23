@@ -12,13 +12,14 @@ class App extends React.Component {
       page: 1
     };
     this.search = this.search.bind(this);
+    this.pageHandler = this.pageHandler.bind(this);
   }
 
-  search(input) {
-    const state = {query: input, page: 1};
+  search(input, page = 1) {
+    const state = {query: input, page};
     const searchURL = '/events?' + new URLSearchParams({
       q: input,
-      _page: 1
+      _page: page
     });
 
     fetch(searchURL)
@@ -28,6 +29,7 @@ class App extends React.Component {
       }).then(response => {
         state.results = response;
         this.setState(state);
+        console.log(state.results);
       })
       .catch(err => {
         console.error(err);
@@ -35,9 +37,8 @@ class App extends React.Component {
   }
 
   pageHandler(data) {
-    console.log(data);
-    let selected = data.selected;
-    console.log(selected);
+    let selected = data.selected + 1;
+    this.search(this.state.query, selected);
   }
 
   render() {

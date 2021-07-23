@@ -10,7 +10,6 @@ class Searchbox extends React.Component{
 
   onSubmit(event) {
     event.preventDefault();
-    console.log('in searchbox', this);
     this.props.onSubmit(this.input.current.value);
   }
 

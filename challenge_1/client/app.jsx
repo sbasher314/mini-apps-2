@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: '',
+      query: null,
       results: [],
       pageCount: 0,
       page: 1
@@ -30,7 +30,6 @@ class App extends React.Component {
       }).then(response => {
         state.results = response;
         this.setState(state);
-        console.log(state.results);
       })
       .catch(err => {
         console.error(err);
@@ -44,9 +43,13 @@ class App extends React.Component {
 
   render() {
     return (<>
+      <h1>Historical Events Finder!</h1>
+      {this.state.query === null &&
+        <h3>Type below to find a historical event matching your search terms</h3>
+      }
       <Searchbox onSubmit={this.search} />
       <Results results={this.state.results} />
-      {this.state.pageCount > 0 &&
+      {this.state.pageCount > 0 ?
         <ReactPaginate
           containerClassName={'pagination'}
           forcePage={this.state.page - 1}
@@ -55,6 +58,8 @@ class App extends React.Component {
           pageCount={this.state.pageCount}
           pageRange={5}
         />
+      :
+        this.state.query !== null && <div>0 Results Found</div>
       }
     </>)
     }

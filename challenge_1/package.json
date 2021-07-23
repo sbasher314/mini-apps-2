@@ -1,6 +1,6 @@
 {
   "name": "historical_events",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "\"Build a single-page app that enables users to search and browse historical event information based on data found in the JSON file\"",
   "main": "./client/index.js",
   "scripts": {

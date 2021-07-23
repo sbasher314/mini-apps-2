@@ -6,18 +6,14 @@ class Results extends React.Component{
     super(props);
   }
 
-  xmlCleanup(string) {
-    try {
-      string = he.decode(string);
-      string = he.decode(string);
-      string = he.decode(string);
-      string = he.decode(string);
-      string = string.replace('–',' – ');
-      string = decodeURIComponent(string);
-    } catch (err) {
-
-    }
-    return  string.replace('ampamp', '&');
+  xmlCleanup(string = '') {
+    try { string = he.decode(string) } catch {}
+    try { string = he.decode(string) } catch {}
+    try { string = he.decode(string) } catch {}
+    try { string = he.decode(string) } catch {}
+    try { string = string.replaceAll('–',' – ') } catch {}
+    try { string = decodeURIComponent(string) } catch {}
+    return  string.replaceAll('ampamp', '&');
   }
 
   render() {

@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/sbasher314/rpt27-mini-apps-2/tree/challenge_1#readme",
   "dependencies": {
+    "he": "^1.2.0",
     "html-webpack-plugin": "^5.3.2",
     "json-server": "^0.16.3",
     "react": "^17.0.2",

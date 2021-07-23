@@ -4,6 +4,7 @@
   display: flex;
   flex-flow: column;
   align-items: center;
+  position: absolute;
 }
 
 body {
@@ -14,12 +15,13 @@ body {
 ul.pagination {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 1em;
   display: flex;
   justify-content: center;
   align-self: center;
   width: max-content;
   border-radius:4px;
+  margin-top: auto;
 }
 
 ul.pagination li {
@@ -66,4 +68,46 @@ ul.pagination li.selected {
 .Searchbox input {
   width: 100%;
   max-width: 420px;
+}
+
+.Results {
+  width: calc(100% - 2em);
+  overflow: auto;
+  box-shadow: 0px 8px 16px -8px #ccc;
+}
+
+.Results table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.Results th {
+  background: hsl(210, 75%, 50%);
+  color: white;
+}
+
+.Results thead tr {
+  position: sticky;
+  top: 0;
+}
+
+.Results td, .Results th {
+  padding: 1em;
+  word-break: break-word;
+}
+.Results table, .Results tr {
+  border: 1px solid #0009;
+  border-collapse: collapse;
+}
+
+.Results table th:first-child {
+  width: 100px;
+}
+
+.Results table th:nth-child(2) {
+  width: 100px;
+}
+.Results table th:last-child{
+  width: auto;
+  overflow: auto;
 }

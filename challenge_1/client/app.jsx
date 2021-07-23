@@ -1,6 +1,7 @@
 import React from "react";
 import Searchbox from './components/Searchbox';
 import ReactPaginate from 'react-paginate';
+import Results from './components/Results';
 class App extends React.Component {
 
   constructor(props) {
@@ -44,6 +45,7 @@ class App extends React.Component {
   render() {
     return (<>
       <Searchbox onSubmit={this.search} />
+      <Results results={this.state.results} />
       {this.state.pageCount > 0 &&
         <ReactPaginate
           containerClassName={'pagination'}

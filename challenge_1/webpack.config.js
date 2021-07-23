@@ -23,4 +23,7 @@ entry: path.resolve(__dirname) + '/client/index.js',
    ]
  },
  plugins: [new HtmlWebpackPlugin({ template: './client/index.html' })],
+ resolve: {
+   extensions: ['.js','.jsx']
+ }
 }

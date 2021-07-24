@@ -8,28 +8,28 @@ class TimeScaleChart extends React.Component {
     this.chart = React.createRef();
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     var ctx = this.chart.current;
     var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: [ //this.props.labels
-          new Date('7/01/2021'),
-          new Date('7/05/2021'),
-          new Date('7/10/2021'),
-          new Date('7/15/2021'),
-          new Date('7/20/2021'),
-          new Date('7/25/2021'),
-          new Date('7/30/2021'),
-          new Date('8/04/2021'),
-        ],
+        // labels: [ //this.props.labels
+        //   new Date('7/01/2021'),
+        //   new Date('7/05/2021'),
+        //   new Date('7/10/2021'),
+        //   new Date('7/15/2021'),
+        //   new Date('7/20/2021'),
+        //   new Date('7/25/2021'),
+        //   new Date('7/30/2021'),
+        //   new Date('8/04/2021'),
+        // ],
         datasets: [
           {
-            label: 'Bitcoin Price',
+            label: 'Bitcoin Price (USD)',
             backgroundColor: '#f669',
             borderColor: '#f66',
             fill: false,
-            data: [0,1,2,3,4,5,6,7] //this.props.data
+            data: this.props.data
           }
         ]
       },

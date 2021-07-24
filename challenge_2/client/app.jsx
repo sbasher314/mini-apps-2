@@ -17,9 +17,6 @@ class App extends React.Component {
       .then(dataset => {
         const data = dataset['bpi'];
         const updatedAt = dataset['time'].updated;
-        // for (const date in dataset['bpi']) {
-        //   data.push({x: new Date(date), y: dataset[date]});
-        // }
         this.setState({data, updatedAt});
       })
       .catch(err => {
@@ -31,6 +28,9 @@ class App extends React.Component {
     return (
       <>
         <TimeScaleChart data={this.state.data} />
+        {this.state.updatedAt &&
+          <span className="updatedAt">Updated at: {(new Date(this.state.updatedAt)).toLocaleString()}</span>
+        }
       </>
     )
   }

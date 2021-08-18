@@ -10,7 +10,6 @@ class ScoreCard extends Component {
     let length = 10 - frames.length;
     let emptiness = Array(length).fill({'score': 0, 'shots': []});
     frames = frames.concat(emptiness);
-    console.log(frames);
     return (
       <table className="scoreCard">
         <tbody>

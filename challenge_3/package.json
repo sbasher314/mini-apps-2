@@ -1,0 +1,40 @@
+{
+  "name": "bowling",
+  "version": "1.0.0",
+  "description": "Build a single-page app implementation of a 10-pin Bowling game using Express and React.",
+  "main": "./client/index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development && node server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbasher314/rpt27-mini-apps-2.git#challenge_3"
+  },
+  "keywords": [
+    "bowling"
+  ],
+  "author": "Steven Basher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sbasher314/rpt27-mini-apps-2/issues"
+  },
+  "homepage": "https://github.com/sbasher314/rpt27-mini-apps-2/tree/challenge_3#readme",
+  "dependencies": {
+    "html-webpack-plugin": "^5.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
+  }
+}

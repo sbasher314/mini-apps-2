@@ -1,0 +1,30 @@
+button {
+  min-width: 128px;
+  min-height: 64px;
+}
+
+table {
+  margin: auto;
+}
+
+.cardFrame {
+  width: 64px;
+  min-height:72px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: center;
+}
+
+tr {
+  border: 1px solid black;
+}
+
+.cardFrame tbody tr:first-child {
+  height:24px;
+}
+
+.cardFrame tbody tr:last-child {
+  height:48px;
+}
+

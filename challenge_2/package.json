@@ -1,0 +1,46 @@
+{
+  "name": "crypto_chart",
+  "version": "0.0.0",
+  "description": "\"Build a single-page app that enables users to search and browse historical event information based on data found in the JSON file\"",
+  "main": "./client/index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbasher314/rpt27-mini-apps-2.git#challenge_2"
+  },
+  "keywords": [
+    "crypto",
+    "chart"
+  ],
+  "author": "Steven Basher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sbasher314/rpt27-mini-apps-2/issues"
+  },
+  "homepage": "https://github.com/sbasher314/rpt27-mini-apps-2/tree/challenge_2#readme",
+  "dependencies": {
+    "chart.js": "^3.4.1",
+    "chartjs-adapter-luxon": "^1.0.0",
+    "html-webpack-plugin": "^5.3.2",
+    "luxon": "^1.28.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "express": "^4.17.1",
+    "file-loader": "^6.2.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
+  }
+}

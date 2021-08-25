@@ -1,6 +1,6 @@
 .Grid {
   display: grid;
-  grid-template-rows: repeat(10, clamp(32px, 64px, 5vw));
+  grid-template-rows: repeat(11, clamp(32px, 64px, 5vw));
   width: min-content;
   margin: auto;
   margin-top: 32px;
@@ -8,6 +8,11 @@
   overflow: hidden;
   border: 1px solid black;
   user-select: none;
+  font-size: 24px;
+}
+
+.Grid.disabled {
+  cursor: not-allowed;
 }
 
 .Row:first-child {
@@ -17,6 +22,10 @@
   display: grid;
   border-top: 1px solid black;
   grid-template-columns: repeat(10, clamp(32px, 64px, 5vw));
+}
+
+.Row.top {
+  grid-template-columns: 100%;
 }
 
 .Col {
@@ -38,3 +47,62 @@
   z-index: 20;
   box-shadow: 0 0 4px inset #333;
 }
+
+.Col.visible-x {
+  background: red;
+}
+
+.Col.visible-x span::after,  .Col.visible-m span::after{
+  content: '💣';
+}
+
+.Col.visible-f span::after {
+  content: '🚩'
+}
+
+.Col.visible-0 {
+  background: #999;
+  box-shadow: 0 0 2px #333 inset;
+}
+
+.Col.visible-1 span::after {
+  content: '1';
+  color: blue;
+}
+
+.Col.visible-2 span::after {
+  content: '2';
+  color: green;
+}
+
+.Col.visible-3 span::after {
+  content: '3';
+  color: red;
+}
+
+.Col.visible-4 span::after {
+  content: '4';
+  color: darkblue;
+}
+
+.Col.visible-5 span::after {
+  content: '5';
+  color: maroon;
+}
+
+.Col.visible-6 span::after {
+  content: '6';
+  color: teal;
+}
+
+.Col.visible-7 span::after {
+  content: '7';
+  color: black;
+}
+
+.Col.visible-8 span::after {
+  content: '8';
+  color: #666;
+}
+
+

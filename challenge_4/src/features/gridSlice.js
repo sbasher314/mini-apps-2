@@ -1,5 +1,8 @@
 const defaultSize = {rows: 10, cols: 10}
 const defaultMines = 10;
+const mine = 'm';
+const flag = 'f';
+const tripped = 'x';
 
 function generateMines(state, n = defaultMines, gridSize = defaultSize) {
   let mineArray = [];
@@ -13,8 +16,7 @@ function generateMines(state, n = defaultMines, gridSize = defaultSize) {
     }
     //If not, we add a compound id to identify it
     mineArray.push(r+'-'+c);
-    state.grid[r][c] = "X";
-    console.log(r, c);
+    state.grid[r][c] = mine;
     for (var row = r - 1; row <= r + 1; row++) {
       if (row >= gridSize.rows) {
         break;
@@ -46,7 +48,11 @@ function init(state = {}, gridSize = defaultSize, numMines = defaultMines) {
   let initialState = {
     grid : [],
     visible: [],
-    turns: 0
+    numMines,
+    flagged: 0,
+    correctlyFlagged: 0,
+    turns: 0,
+    hasFailed: false
   }
   for (let r = 0; r < gridSize.rows; r++) {
     initialState.grid[r] = Array(gridSize.cols).fill(0);
@@ -59,19 +65,88 @@ function init(state = {}, gridSize = defaultSize, numMines = defaultMines) {
   return state;
 }
 
+function findAdjacentZeroes(visible, grid, row, column) {
+  const visited = [];
+
+  function checkAdjacent(row, column) {
+    if (visited.includes(row+'-'+column)) {
+      return;
+    }
+    if (row < 0 || column < 0 || row >= grid.length || column >= grid[0].length) {
+      return;
+    }
+    visited.push(row+'-'+column);
+    let isZero = grid[row][column] === 0
+    visible[row][column] = grid[row][column];
+
+    if (isZero) {
+      checkAdjacent(row - 1, column - 1);
+      checkAdjacent(row - 1, column);
+      checkAdjacent(row - 1, column + 1);
+      checkAdjacent(row, column - 1);
+      checkAdjacent(row, column + 1);
+      checkAdjacent(row + 1, column - 1);
+      checkAdjacent(row + 1, column);
+      checkAdjacent(row + 1, column + 1);
+    }
+  }
+
+  checkAdjacent(row, column);
+  return visible;
+}
+
 let generatedState = init();
 
 export default function gridReducer(state = generatedState, action) {
   switch (action.type) {
     case 'click': {
+      const {row, column} = action.payload;
+      let visible = [...state.visible];
+      let hasFailed = state.hasFailed;
+      if (visible[row][column] !== flag) {
+        if (state.grid[row][column] === mine) {
+          visible = state.grid;
+          visible[row][column] = tripped;
+          hasFailed = true;
+        } else {
+          const value = state.grid[row][column]
+          visible[row][column] = value;
+          if (value === 0) {
+            findAdjacentZeroes(visible, state.grid, row, column);
+          }
+        }
+      } else {
+        console.error('Can not check cell when it is flagged')
+      }
       //check if mine, else make visible... might make a helper / sub-function
-      const newState = {...state};
-      return newState;
+      return {...state, visible, hasFailed}
     }
     case 'flag': {
+      const {row, column} = action.payload;
+      const visible = [...state.visible];
+      let correctlyFlagged = state.correctlyFlagged;
+      let flagged = state.flagged;
+      if (visible[row][column] === '') {
+        visible[row][column] = flag;
+        if (state.grid[row][column] === mine) {
+          correctlyFlagged++;
+        }
+        flagged++;
+      } else if (visible[row][column] === flag) {
+        visible[row][column] = '';
+        if (state.grid[row][column] === mine) {
+          correctlyFlagged--;
+        }
+        flagged--;
+      } else {
+        console.error('This cell can not be flagged!')
+      }
+      if (correctlyFlagged === state.numMines && flagged === state.numMines) {
+        console.log('You correctly found all the bombs!');
+        alert('You correctly found all the bombs!')
+      }
       //set visibility at place as f
-      const newState = {...state};
-      return newState;
+      return {...state, visible, flagged, correctlyFlagged};
     }
     case 'reset': {
       return init(state);
